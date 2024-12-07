@@ -1,0 +1,6 @@
+#!/bin/bash
+
+STATUS_FILE="/tmp/waybar_status"
+
+# Set the status to ≻≺≻
+echo "≻≺≻" > "$STATUS_FILE"

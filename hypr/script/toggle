@@ -1,0 +1,17 @@
+#!/bin/bash
+
+CONFIG_FILE="$HOME/.config/hypr/conf/WINDOWSANDWORKSPACES.conf"
+
+# The rules for toggling
+TOGGLE_RULES=(
+    "windowrulev2 = float, class:.*"
+    "windowrulev2 = size 950 500, class:(kitty)"
+    "windowrulev2 = size 950 500, class:(librewolf)"
+)
+
+# Loop through each rule and comment it out
+for RULE in "${TOGGLE_RULES[@]}"; do
+    # Comment the rule if uncommented
+    sed -i "s/^$RULE/#$RULE/" "$CONFIG_FILE"
+    echo "Disabled float rule: $RULE"
+done

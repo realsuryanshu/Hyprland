@@ -1,0 +1,30 @@
+* {
+    border: none;
+    border-radius: 0;
+    font-family: "Hack Nerd Font";
+    color: #f1be9b;
+    min-height: 0;
+}
+
+window#waybar {
+    background: rgba(2, 9, 20, 0.5);
+    font-size: 12px;
+    padding: 0;
+}
+
+#workspaces {
+  font-size: 12px;
+}
+
+#workspaces button.active {
+	background-color: #63576E;
+  }
+
+#clock, #network, #tray {
+    padding: 0 3px;
+    margin: 0 2px;
+}  
+  #workspaces button {
+    color: #ffffff;
+  }
+  

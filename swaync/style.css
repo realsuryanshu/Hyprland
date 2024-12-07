@@ -1,0 +1,143 @@
+@define-color bgc rgba(0, 0, 0, 1);
+
+* {
+  font-family: Hack Nerd Font;
+  font-size: 17px;
+  border-width: 3px;
+  border-color: #B0B0B0;
+}
+ 
+.control-center .notification-row:focus,
+.control-center .notification-row:hover {
+  opacity: 1;
+  background: @bgc;
+}
+
+.notification {
+  background: #000000;
+  border-radius: 0px;
+  box-shadow: none;
+  padding: 15px;
+}
+
+.notification-content {
+  background: #000000;
+  padding: 15px;
+  margin: 0;
+}
+
+.summary {
+  color: #B0B0B0;
+  text-shadow: none;
+}
+
+.body {
+  background: transparent;
+  color: #B0B0B0;
+  text-shadow: none;
+}
+
+.time {
+  background: transparent;
+  color: #B0B0B0;
+  text-shadow: none;
+}
+
+.close-button {
+  background: #000000;
+  color: #B0B0B0;
+  text-shadow: none;
+  padding: 0;
+  border-radius: 20px;
+  margin-top: 9px;
+  margin-right: 5px;
+}
+
+.close-button:hover {
+  box-shadow: none;
+  background: #B0B0B0;
+  color: #000000;
+  transition: all .15s ease-in-out;
+  border: none;
+}
+
+.control-center {
+  background-color: @bgc;
+  border-radius: 20px;
+}
+
+.control-center-list {
+  background: transparent;
+}
+
+.control-center-list-placeholder {
+  opacity: .5;
+}
+
+.floating-notifications {
+  background: transparent;
+}
+
+.blank-window {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+/*** Widgets ***/
+
+/* Title widget */
+.widget-title {
+  margin: 10px 10px 5px 10px;
+  font-size: 1.5rem;
+  color: #B0B0B0;
+  padding: 10px 10px;
+}
+
+.widget-title > button {
+  font-size: 1rem;
+  color: #B0B0B0;
+  padding: 10px;
+  background-color: @bgc;
+  box-shadow: none;
+  border-radius: 5px;
+}
+
+.widget-title > button:hover {
+  background-color: #B0B0B0;
+  color: #000000;
+}
+
+.widget-label {
+  margin: 10px 10px 10px 10px;
+}
+
+/* DND widget */
+.widget-dnd {
+  margin: 10px 10px 5px 10px;
+  font-size: 1.1rem;
+  color: #B0B0B0;
+}
+
+.widget-dnd > switch {
+  font-size: initial;
+  border-radius: 100px;
+  background: #333333;
+  border: none;
+  box-shadow: none;
+  color: transparent;
+  margin: 10px 10px 5px 10px;
+}
+
+.widget-dnd > switch:checked {
+  background: #B0B0B0;
+}
+
+.widget-dnd > switch slider {
+  background: #202020;
+  border-radius: 100px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  min-height: 28px;
+  min-width: 30px;
+  margin: 0px;
+}
+

@@ -1,0 +1,13 @@
+@theme "~/.config/rofi/theme.rasi"
+
+configuration {
+    show-icons: false;
+    font: "Hack Nerd Font 12";
+
+    display-ssh:    "";
+    display-run:    "";
+    display-drun:   "";
+    display-window: "";
+    display-combi:  "";
+    display-filebrowser: "";
+}

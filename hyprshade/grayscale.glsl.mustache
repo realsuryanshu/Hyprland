@@ -1,0 +1,73 @@
+/*
+ * Debug: Grayscale + Blue Light Filter
+ */
+
+precision highp float;
+varying vec2 v_texcoord;
+uniform sampler2D tex;
+
+// Color temperature in Kelvin
+const float Temperature = 2600.0; // Test with a fixed temperature
+
+// Strength of the blue light filter
+const float Strength = 1.0;
+
+// Grayscale Type
+const int LUMINOSITY = 0;
+const int LIGHTNESS = 1;
+const int AVERAGE = 2;
+const int Type = LUMINOSITY;
+
+// Grayscale Luma Coefficients
+const int PAL = 0;
+const int HDTV = 1;
+const int HDR = 2;
+const int LuminosityType = HDR;
+
+// Convert temperature to RGB
+vec3 colorTemperatureToRGB(const in float temperature) {
+    mat3 m = (temperature <= 6500.0)
+        ? mat3(vec3(0.0, -2902.1955373783176, -8257.7997278925690),
+               vec3(0.0, 1669.5803561666639, 2575.2827530017594),
+               vec3(1.0, 1.3302673723350029, 1.8993753891711275))
+        : mat3(vec3(1745.0425298314172, 1216.6168361476490, -8257.7997278925690),
+               vec3(-2666.3474220535695, -2173.1012343082230, 2575.2827530017594),
+               vec3(0.55995389139931482, 0.70381203140554553, 1.8993753891711275));
+    return mix(clamp(vec3(m[0] / (vec3(clamp(temperature, 1000.0, 40000.0)) + m[1]) + m[2]), vec3(0.0), vec3(1.0)),
+               vec3(1.0), smoothstep(1000.0, 0.0, temperature));
+}
+
+// Compute grayscale
+float computeGrayscale(vec3 color) {
+    if (Type == LUMINOSITY) {
+        if (LuminosityType == PAL) {
+            return dot(color, vec3(0.299, 0.587, 0.114));
+        } else if (LuminosityType == HDTV) {
+            return dot(color, vec3(0.2126, 0.7152, 0.0722));
+        } else if (LuminosityType == HDR) {
+            return dot(color, vec3(0.2627, 0.6780, 0.0593));
+        }
+    } else if (Type == LIGHTNESS) {
+        float maxColor = max(color.r, max(color.g, color.b));
+        float minColor = min(color.r, min(color.g, color.b));
+        return (maxColor + minColor) / 2.0;
+    } else if (Type == AVERAGE) {
+        return (color.r + color.g + color.b) / 3.0;
+    }
+    return 0.0; // Default fallback
+}
+
+void main() {
+    vec4 pixColor = texture2D(tex, v_texcoord);
+    vec3 color = vec3(pixColor.rgb);
+
+    // Apply grayscale
+    float gray = computeGrayscale(color);
+    vec3 grayscaleColor = vec3(gray);
+
+    // Apply blue light filter
+    vec3 filteredColor = mix(grayscaleColor, grayscaleColor * colorTemperatureToRGB(Temperature), Strength);
+
+    gl_FragColor = vec4(filteredColor, pixColor.a);
+}
+

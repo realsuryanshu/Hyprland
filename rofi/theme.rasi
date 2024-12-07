@@ -1,0 +1,60 @@
+* {
+  color: #f1be9b;
+  txt: #f1be9b;
+  background-color:  transparent;
+  transparent: rgba(0,0,0,0.1);
+  bg-selected: #565879;
+}
+
+
+window {
+    width: 15%;
+    background-color: #020914;
+}
+
+
+
+element-text {
+  background-color: transparent;
+  text-color: @txt;
+  highlight: none;
+}
+
+
+
+element selected {
+  text-color: inherit;
+  background-color: @bg-selected;
+}
+
+
+
+entry {
+  padding: 3;
+  background-color: transparent;
+  text-color: @txt;
+  highlight: none;
+}
+
+
+
+element {
+  padding: 4;
+  background-color: transparent;
+  text-color: @txt;
+}
+
+
+
+prompt {
+  enabled: true;
+  background-color: transparent;
+  text-color: @txt;
+}
+
+
+
+listview {
+lines:      10;
+column:     1;
+}
